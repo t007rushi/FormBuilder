@@ -74,3 +74,7 @@ const formStyle = {
 | is_required  | boolean | optional | defines compulsary fields to fill before submiting the form |
 | is_group     | boolean | optional | to define multiple checkbox or radio inputs to map          |
 | optionsArray | array   | optional | multiple options of group ,depends on is_group value        |
+
+## Basic Form 
+
+![image](https://user-images.githubusercontent.com/61598260/183308031-3595bc9f-c3e3-467a-829b-2537952d336e.png)
