@@ -1,70 +1,76 @@
-# Getting Started with Create React App
+# FORMBUILDER Using React
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Basic Usage
 
-## Available Scripts
+```js import React from 'react';
+import ReactDOM from "react-dom";
+import { FormBuilder } from "./components/FormBuilder";
 
-In the project directory, you can run:
+const root = ReactDOM.createRoot(document.getElementById("root"));
+root.render(
+  <React.StrictMode>
+    <FormBuilder />
+  </React.StrictMode>
+);
+```
 
-### `npm start`
+## Prop
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+```js
+var formItems = [
+   Name: {
+      field: "input",
+      type: "text",
+      label: "user name",
+      placeholder: "Enter your last name",
+      is_required : true,
+    },
+    password: {
+      field: "input",
+      type: "password",
+      label: "Password",
+      placeholder: "*********",
+      is_required : true,
+    },
+];
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+const formStyle = {
+  display: "flex",
+  flexDirection: "column",
+  alignItems: "center",
+  justifyContent: "center",
+};
 
-### `npm test`
+<FormBuilder
+  formContent={formItems}
+  formStyle={formStyle}
+  onSubmit={() => {
+    return validateForm();
+  }}
+/>;
+```
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Form Params
 
-### `npm run build`
+| Name        | type              | Require? | Description                                                                                               |
+| ----------- | ----------------- | -------- | --------------------------------------------------------------------------------------------------------- |
+| formContent | object            | Required | All form fields collection with types `keys are field name` and `values are implementation specification` |
+| formStyle   | object            | optional | style object for `CSS styling` of form                                                                    |
+| onSubmit    | Callback function | Required | `function called` on form submission                                                                      |
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## FormContent object description
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- Just start writing your fields keeping in mind instead of
+  describing like `key:value` diffrerently as in JSON
+  just write simply key as field Name to display on Screen
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+| Name         | type    | Require? | Description                                                 |
+| ------------ | ------- | -------- | ----------------------------------------------------------- |
+| [objectKey]  | object  | Required | form field name                                             |
+| field        | string  | Required | defines field tag                                           |
+| type         | string  | Required | input field type                                            |
+| label        | string  | optional | label of field                                              |
+| placeholder  | string  | optional | field placeholder                                           |
+| is_required  | boolean | optional | defines compulsary fields to fill before submiting the form |
+| is_group     | boolean | optional | to define multiple checkbox or radio inputs to map          |
+| optionsArray | array   | optional | multiple options of group ,depends on is_group value        |
